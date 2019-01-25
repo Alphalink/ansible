@@ -80,7 +80,10 @@ class CallbackModule(CallbackBase):
             task_result += " | msg: " + to_text(result._result.get('msg'))
 
         if result._result.get('stdout'):
-            task_result += " | stdout: " + result._result.get('stdout')
+            if isinstance(result._result.get('stdout'), str):
+                task_result += " | stdout: " + result._result.get('stdout')
+            else:
+                task_result += " | stdout: <Not displayed>"
 
         if result._result.get('stderr'):
             task_result += " | stderr: " + result._result.get('stderr')
